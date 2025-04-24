@@ -1,10 +1,3 @@
-ITEM,CONDITION,SENTENCE
-2001,0,"Deodoro proclamou a República."
-2002,0,"Maria parece que fuma."
-2003,0,"A polícia estava comparecida."
-2004,0,"A festa já havia começado."
-2005,0,"O livro estava sumido."
-2006,0,"O trânsito ficou engarrafado."
-2007,0,"Giovanna estava sonolenta."
-2008,0,"Marise analisou os resultados."
-2009,0,"O dinheiro estava contado pelo banco."
+ITEM,CONTEXT,SENTENCE1,SENTENCE2,OBJETOAFETADO
+801,O bebê estava inquieto depois do banho. A mãe o ninou por um tempo no colo.,O bebê adormeceu devagar.,O bebê correu pela casa.,o bebê
+802,"Estava tudo calmo na praia. De repente, algo surgiu no horizonte.",Um barco apareceu ao longe.,Um barco desapareceu.,o barco
