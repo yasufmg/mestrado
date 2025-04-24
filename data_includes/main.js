@@ -109,6 +109,9 @@ newTrial("participants",
         .log()
         .print()
     ,
+    newText("<b>Obs.: O certificado de participação apenas será enviado caso você tenha deixado seu nome completo.</b>")
+    .color("red")
+    ,
     // Clear error messages if the participant changes the input
     newKey("just for callback", "") 
         .callback( getText("errorage").remove() , getText("errorID").remove() )
@@ -143,7 +146,7 @@ newTrial("participants",
 
 // Instructions
 newTrial("instructions",
-    newText("instructions_greeting", "<h2>INSTRUÇÕES</h2><p>Neste experimento, você deverá avaliar algumas frases do português de acordo com uma escala de 0 a 100, em que 0 significa TOTALMENTE ARTIFICIAL e 100 significa TOTALMENTE NATURAL.</p><p>Ao iniciar, você verá uma frase. Leia-a com atenção e atribua uma nota a ela movimentando a escala de 0 a 100.</p><p>Por fim, clique em PRÓXIMO para enviar sua nota e continuar avaliando as próximas frases.</p><p>Observe que não nos interessa saber se a frase é correta ou não, mas apenas se ela lhe parece natural ou artificial segundo o uso cotidiano que todos os falantes fazem da língua.</p><p>Após entender essas instruções, clique em INICIAR para começar.</p>")
+    newText("instructions_greeting", "<h2>INSTRUÇÕES</h2><p>Neste experimento, você verá algumas situações descritas em português, todas envolvendo um objeto que passou por alguma mudança ou ação.</p><p>Logo após cada situação, aparecerá uma pergunta: “O que aconteceu com [o objeto]?”</p><p>Você deverá escolher entre duas frases a que melhor responde a essa pergunta, ou seja, a que mais faz sentido com o que aconteceu com o objeto na situação apresentada.</p><p>Não existe resposta certa ou errada - o que importa é sua intuição sobre o que faz mais sentido com base no que você leu.</p><p>Após ler a situação e selecionar a frase que considera mais adequada, clique em PRÓXIMO para seguir para a próxima frase.</p><p>Ao entender essas instruções, clique em INICIAR para começar.</p>")
         .left()
         .cssContainer({"margin":"1em"})
         .print()
@@ -158,44 +161,81 @@ newTrial("instructions",
 
 // Exercise
 Template("exercise.csv", row =>
-newTrial( "exercise" ,
-        newText("sentence", row.SENTENCE)
-            .cssContainer({"margin-top":"2em", "margin-bottom":"2em", "font-size":"1.5em"})
+    newTrial( "exercise" ,
+        newText("context", row.CONTEXT)
+            .cssContainer({"margin-top":"2em", "margin-bottom":"2em", "font-size":"1.4em"})
             .center()
             .print()
             ,
-
-    newScale("slider", 100)
-        .before( newText("left", "<div class='fancy'> TOTALMENTE ARTIFICIAL (0) </div>") )
-        .after( newText("right", "<div class='fancy'> (100) TOTALMENTE NATURAL </div>") )
-        .labelsPosition("top")
-        .cssContainer({"margin":"1em"})
-        .slider()
-        .center()
-        .size(500).css("max-width", "20em")
-        .print()
-        ,
-    
-    newText(`<span style='width: 2em; text-align: left;'>0</span>
-        <span style='width: 2em; text-align: center;'>25</span>
-           <span style='width: 2em; text-align: center;'>50</span>
-           <span style='width: 2em; text-align: center;'>75</span>
-           <span style='width: 2em; text-align: right;'>100</span>`)
-    .css({display: 'flex', 'justify-content': 'space-between', width: '20em'})
-    .center()
-    .print()
-    ,
-            newButton("go_to_exercise", "Próximo")
+        
+        newButton("go_to_exercise", "Continuar")
         .cssContainer({"margin":"1em"})
         .center()
         .print()
         .wait()
-,
-        // Wait briefly to display which option was selected
+        ,
+    // Timer para mostrar nova sentenca
         newTimer("wait", 300)
             .start()
             .wait()
-))
+        ,
+    // Limpa a pagina
+        clear()
+        ,
+
+    // Escala
+    
+newText("pergunta", "Qual das opções explica melhor o que aconteceu com " + row.OBJETOAFETADO + "?")
+        .cssContainer({"margin":"1em", "font-size":"1.4em"})
+        .center()
+        .print()
+    ,
+    
+    newScale("exercise1", row.SENTENCE1)
+    .button()
+    .center()
+    .cssContainer({"margin":"1em", "font-size":"1.2em"})  // centraliza
+    .print()
+    ,
+
+    newScale("exercise2", row.SENTENCE2)
+    .button()
+    .center()
+    .cssContainer({"margin":"1em", "font-size":"1.2em"})
+    .print()
+    ,
+    
+    // Cria canvas para posicionar os botões lado a lado ou em linha vertical
+    newCanvas("canvas", 330, 100)
+        .center()
+        .add(0, 0, getScale("exercise1"))
+        .add(0, 100, getScale("exercise2"))
+        .cssContainer({
+        "margin-top": "20px",  // Adiciona margem superior para garantir que fique abaixo do texto anterior
+        "font-size": "1.1em",
+        "display": "flex",
+        "flex-direction": "column",  // Organiza os botões verticalmente
+        "align-items": "center",     // Centraliza os itens dentro do canvas
+    })
+        .print()
+    ,
+
+    // Selecionador que permite apenas uma escolha
+    newSelector("answer")
+        .add(getScale("exercise1"), getScale("exercise2"))
+        .center()
+        .shuffle()  // Esse shuffle agora funciona pois os elementos foram adicionados explicitamente como canvas
+        .log()
+        .wait()
+        ,
+        clear()
+        ,
+        
+        // Wait briefly to display which option was selected
+        newTimer("wait", 1000)
+            .start()
+            .wait()
+    ))
 
 // Start experiment
 newTrial( "start_experiment" ,
