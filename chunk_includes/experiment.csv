@@ -33,7 +33,7 @@ ITEM,VERB,CONTEXT,SENTENCE1,SENTENCE2,OBJETOAFETADO,LIST,TYPE
 216,desligar,Houve uma queda de energia repentina durante a tempestade. A máquina parou de funcionar imediatamente.,A máquina foi desligada.,A máquina desligou.,a máquina,B,item
 117,coagular,"A equipe do laboratório aplicou uma substância diretamente na ampola. Poucos minutos depois, o sangue endureceu por completo.",O sangue foi coagulado.,O sangue coagulou.,o sangue,A,item
 217,coagular,"Uma ferida permaneceu exposta por horas, e o sangue, em contato com o ar, acabou endurecendo naturalmente.",O sangue foi coagulado.,O sangue coagulou.,o sangue,B,item
-118,acender,"A mulher pegou o fósforo e encostou de forma firma na ponta da vela. Em segundos, a chama surgiu.",A vela foi acesa.,A vela acendeu.,a vela,A,item
+118,acender,"A mulher pegou o fósforo e encostou de forma firme na ponta da vela. Em segundos, a chama surgiu.",A vela foi acesa.,A vela acendeu.,a vela,A,item
 218,acender,"Com o vento batendo forte, o fósforo apagava rapidamente. Ainda assim, a vela pegou fogo sozinha após várias tentativas.",A vela foi acesa.,A vela acendeu.,a vela,B,item
 119,romper,"Os engenheiros enfraqueceram propositalmente a base da estrutura durante a obra. Pouco depois, a barragem cedeu de forma controlada, como planejado.",A barragem foi rompida.,A barragem rompeu.,a barragem,A,item
 219,romper,"Após dias de chuvas intensas, a pressão da água aumentou drasticamente. Sem conseguir conter o volume, a barragem cedeu sozinha.",A barragem foi rompida.,A barragem rompeu.,a barragem,B,item
