@@ -1,0 +1,39 @@
+ITEM,VERB,CONTEXT,SENTENCE1,SENTENCE2,OBJETOAFETADO,LIST,TYPE
+101,fechar,Os agentes sanitários inspecionaram a sorveteria do centro da cidade. Eles viram muitas irregularidades e interditaram a sorveteria.,A sorveteria foi fechada.,A sorveteria fechou.,a sorveteria,A,item
+201,fechar,"A sorveteria do centro da cidade estava passando por dificuldades financeiras. Sem conseguir gerar caixa para pagar as despesas, suas atividades se encerraram.",A sorveteria foi fechada.,A sorveteria fechou.,a sorveteria,B,item
+102,esvaziar,O encanador foi até o telhado para consertar o vazamento. Ele abriu a válvula e deixou a água da caixa d'água sair.,A caixa d'água foi esvaziada.,A caixa d'água esvaziou.,a caixa d'água,A,item
+202,esvaziar,"Após vários dias de calor intenso, a caixa d'água estava cada vez menos cheia. No fim da semana, a caixa d'agua já estava sem nada.",A caixa d'água foi esvaziada.,A caixa d'água esvaziou.,a caixa d'água,B,item
+103,morrer,O caçador atirou sem aviso quando viu o animal se aproximar. O bicho não resistiu ao ferimento.,O bicho foi morto.,O bicho morreu.,o bicho,A,item
+203,morrer,"O bicho já estava fraco há dias, quase sem comer. Numa manhã, foi encontrado sem vida.",O bicho foi morto.,O bicho morreu.,o bicho,B,item
+104,aposentar,"Devido a uma reclamação, a chefia analisou o tempo de serviço do funcionário e iniciou seu processo de desligamento. Pouco depois, ele deixou oficialmente o cargo.",O funcionário foi aposentado.,O funcionário aposentou.,o funcionário,A,item
+204,aposentar,"Um funcionário percebeu que já havia completado o tempo necessário de serviço. Então, encerrou sua vida profissional.",O funcionário foi aposentado.,O funcionário aposentou.,o funcionário,B,item
+105,ferver,"Uma chef precisava preparar um queijo. Ela colocou a panela com leite no fogo alto e esquentou a mistura por dez minutos, mexendo cuidadosamente.",O leite foi fervido.,O leite ferveu.,o leite,A,item
+205,ferver,"Enquanto preparava um queijo, alguém esqueceu que o leite estava no fogão. Com o calor acumulado, ele esquentou muito rapidamente e acabou derramando pela panela.",O leite foi fervido.,O leite ferveu.,o leite,B,item
+106,queimar,"Com o calor intenso e muito preocupado com o risco de pragas, o fazendeiro pegou seu isqueiro e ateou fogo no mato seco, controlando-o com cuidado.",Os arbustos foram queimados.,Os arbustos queimaram.,os arbustos,A,item
+206,queimar,"Enquanto fumava seu cigarro, o fazendeiro deixou cair fogo acidentalmente no mato seco. Rapidamente todos os arbustos ficaram em chamas.",Os arbustos foram queimados.,Os arbustos queimaram.,os arbustos,B,item
+107,explodir,"Os peritos instalaram a carga explosiva na construção abandonada. Com o sinal verde, detonaram tudo.",O prédio foi explodido.,O prédio explodiu.,o prédio,A,item
+207,explodir,"O prédio estava com um vazamento de gás há dias. Naquela manhã, uma faísca acabou causando um estrondo repentino.",O prédio foi explodido.,O prédio explodiu.,o prédio,B,item
+108,quebrar,"Durante a arrumação da loja, um funcionário ficou muito nervoso e empurrou a prateleira, e o vaso de porcelana caiu no chão. O impacto foi tão forte que o vaso se despedaçou imediatamente.",O vaso foi quebrado.,O vaso quebrou.,o vaso,A,item
+208,quebrar,"Após anos exposto ao sol e à chuva na varanda, o vaso de cerâmica foi enfraquecendo. Certo dia, quando um funcionário foi limpá-lo, o vaso acabou se despedaçando sozinho.",O vaso foi quebrado.,O vaso quebrou.,o vaso,B,item
+109,estragar,O filho de Luiz resolveu brincar de dirigir enquanto o carro estava ligado. Ele apertou vários botões e acabou causando um problema no motor.,O carro foi estragado.,O carro estragou.,o carro,A,item
+209,estragar,"O carro de Luiz já vinha dando sinais de desgaste. Um dia, no meio do trânsito, parou de funcionar do nada.",O carro foi estragado.,O carro estragou.,o carro,B,item
+110,arrebentar,"Durante a mudança, os carregadores puxaram com força a corda da rede. Com isso, ela não resistiu e se dividiu.",A corda foi arrebentada.,A corda arrebentou.,a corda,A,item
+210,arrebentar,"A rede já estava velha e desgastada pelo tempo. De repente, a corda principal não aguentou e se dividiu.",A corda foi arrebentada.,A corda arrebentou.,a corda,B,item
+111,rachar,"Durante a construção, o pedreiro usou o martelo com força para dividir a pedra. Com isso, ela se partiu ao meio.",A pedra foi rachada.,A pedra rachou.,a pedra,A,item
+211,rachar,"A pedra estava sujeita ao calor intenso por dias. Com o tempo, começou a apresentar fissuras até se partir ao meio.",A pedra foi rachada.,A pedra rachou.,a pedra,B,item
+112,rasgar,"Marcelo estava furioso durante a prova. Sem pensar, ele pegou a folha de papel com raiva e a desfez em inúmeros pedaços com força.",A folha foi rasgada.,A folha rasgou.,a folha,A,item
+212,rasgar,"Marcelo estava muito ansioso enquanto fazia uma prova. Sem querer, ele puxou e a folha de papel se dividiu no meio.",A folha foi rasgada.,A folha rasgou.,a folha,B,item
+113,amassar,"João estava irritado enquanto organizava a mochila. Sem pensar, ele pegou uma garrafa de plástico e a esmagou com raiva.",A garrafa foi amassada.,A garrafa amassou.,a garrafa,A,item
+213,amassar,"A garrafa de plástico ficou esquecida no bolso da mochila durante dias. Quando João a pegou, percebeu que ela estava toda deformada devido ao calor.",A garrafa foi amassada.,A garrafa amassou.,a garrafa,B,item
+114,abrir,"Os donos conseguiram a autorização da prefeitura depois de meses de espera. No dia seguinte, inauguraram a loja com uma pequena cerimônia.",A loja foi aberta.,A loja abriu.,a loja,A,item
+214,abrir,"Depois de muito tempo com as portas fechadas, o movimento voltou ao centro da cidade. De repente, a loja começou a funcionar novamente.",A loja foi aberta.,A loja abriu.,a loja,B,item
+115,entupir,"Os operários despejaram concreto intencionalmente na tubulação do prédio. Como resultado, o ralo da cozinha ficou obstruído.",O ralo foi entupido.,O ralo entupiu.,o ralo,A,item
+215,entupir,"Depois de muitos dias de chuva, a água parou de escoar pelo ralo da calçada. Havia folhas e galhos acumulados no caminho.",O ralo foi entupido.,O ralo entupiu.,o ralo,B,item
+116,desligar,O funcionário identificou um superaquecimento no sistema. Ele apertou o botão do painel e cortou a energia da máquina.,A máquina foi desligada.,A máquina desligou.,a máquina,A,item
+216,desligar,Houve uma queda de energia repentina durante a tempestade. A máquina parou de funcionar imediatamente.,A máquina foi desligada.,A máquina desligou.,a máquina,B,item
+117,coagular,"A equipe do laboratório aplicou uma substância diretamente na ampola. Poucos minutos depois, o sangue endureceu por completo.",O sangue foi coagulado.,O sangue coagulou.,o sangue,A,item
+217,coagular,"Uma ferida permaneceu exposta por horas, e o sangue, em contato com o ar, acabou endurecendo naturalmente.",O sangue foi coagulado.,O sangue coagulou.,o sangue,B,item
+118,acender,"A mulher pegou o fósforo e encostou de forma firma na ponta da vela. Em segundos, a chama surgiu.",A vela foi acesa.,A vela acendeu.,a vela,A,item
+218,acender,"Com o vento batendo forte, o fósforo apagava rapidamente. Ainda assim, a vela pegou fogo sozinha após várias tentativas.",A vela foi acesa.,A vela acendeu.,a vela,B,item
+119,romper,"Os engenheiros enfraqueceram propositalmente a base da estrutura durante a obra. Pouco depois, a barragem cedeu de forma controlada, como planejado.",A barragem foi rompida.,A barragem rompeu.,a barragem,A,item
+219,romper,"Após dias de chuvas intensas, a pressão da água aumentou drasticamente. Sem conseguir conter o volume, a barragem cedeu sozinha.",A barragem foi rompida.,A barragem rompeu.,a barragem,B,item
