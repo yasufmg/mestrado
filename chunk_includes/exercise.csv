@@ -1,0 +1,4 @@
+ITEM,CONTEXT,SENTENCE1,SENTENCE2,OBJETOAFETADO
+1,"O adolescente precisava ir a um compromisso importante com o amigo. Eles saíram juntos de casa para tentar chegar no horário certo.","O adolescente fez o amigo chegar ao compromisso","O amigo chegou ao compromisso com o adolescente",o adolescente
+2,"O cachorro correu pelo quintal, mas não conseguiu frear a tempo na curva.","O cachorro escorregou na grama","A velocidade fez o cachorro escorregar",o cachorro
+3,"Com a mudança de clima, a criança começou a sentir sintomas gripais. No fim da semana, a tosse ficou mais forte e constante.","A criança tossiu muito no fim da semana","A gripe fez a criança tossir bastante",a criança

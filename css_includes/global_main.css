@@ -1,0 +1,118 @@
+body {
+    color:  black;
+    background-color: white;
+    margin-left: 0;
+    margin-top: 5em;
+}
+a {
+	color: crimson;
+}
+
+.lindent { margin-left: 5em; }
+
+.sending-results {
+    font-weight: bold;
+    font-size: medium;
+}
+
+.newTextInput {
+    margin-top: 1em;
+    margin-bottom:1em;
+    width:900px;
+}
+
+newButton {
+    padding-top: 0.5em;
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+
+div.bar-container {
+   /* width: 900px !important;*/
+    background-color: #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+    margin: 0 auto; /* centraliza */
+}
+
+div.bar {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6 0%, #1e40af 100%);
+    transition: width 0.4s ease-in-out;
+    border-radius: 12px 0 0 12px;
+}
+
+
+
+div.fancy {
+    color: RoyalBlue;
+}
+
+p {
+    margin-top: 1em;
+    margin-bottom: 1em;    
+}
+
+p.progress-text {
+    padding-top: 0.5em;
+    margin-top: 0;
+    margin-bottom: 2em;
+    font-size: small;
+    text-align: center;
+}
+p.practice-box {
+    color:  black;
+    height: 1.5em;
+    padding-bottom: 1em;
+    font-size: small;
+    text-align: center;
+}
+span.retry {
+    color:  OldLace;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+span.retry:hover {
+    text-decoration: underline;
+}
+span.retry:visited {
+    color:  OldLace;
+}
+
+
+/*Aesthetics (general) for the scale element:*/
+.PennController-Scale .option label{
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: white;
+    background-color: white;
+    font-size: 1.2em !important;
+    text-align: left;
+    white-space: nowrap;
+    overflow-x: auto;
+    width: auto;
+    max-width: 90vw;
+    margin: 1em auto;
+    line-height: 1.4;
+}
+
+/*Aesthetics (general) for the scale element:*/
+/*When the cursor hovers on an option and the scale is not disabled*/ 
+.PennController-Scale .option input:enabled + label:hover{
+    cursor: pointer;
+    background-color: lightblue;
+    color: black;
+    font-size: inherit;
+    transition: 0.4s;
+}
+
+/*Aesthetics (general) for the selected scale element:*/
+.PennController-Scale .option input:checked + label{
+    /*outline: black solid !important;*/
+    background-color: white;
+    color: darkblue;
+    font-size: inherit;
+}
