@@ -9,21 +9,27 @@ Header(
     newVar("NATIVO").global(),
     newVar("IDADE").global(),
     newVar("ESCOLARIDADE").global(),
+    newVar("CIDADE NATAL").global(),
+    newVar("RESIDENCIA").global(),
+    newVar("CURSO").global(),
     newVar("CERTIFICADO").global(),
     // Experimental trial
     newVar("presentationOrderCounter").global().set(0)
 )
 
-// Add the particimant info to all trials' results lines
+// Add the participant info to all trials' results lines
 .log( "ID"     , getVar("ID") )
 .log( "GENERO" , getVar("GENERO") )
 .log( "NATIVO" , getVar("NATIVO") )
 .log( "IDADE"    , getVar("IDADE") )
 .log( "ESCOLARIDADE" , getVar("ESCOLARIDADE") )
+.log( "CIDADE NATAL"   , getVar("CIDADE NATAL") )
+.log( "RESIDENCIA"   , getVar("RESIDENCIA") )
+.log( "CURSO"   , getVar("CURSO") )
 .log( "CERTIFICADO"   , getVar("CERTIFICADO") )
 
 // Sequence of events: consent to ethics statement required to start the experiment, participant information, instructions, exercise, transition screen, main experiment, result logging, and end screen.
-Sequence("consentimento", "setcounter", "participants", "instructions", randomize("exercise"), "start_experiment", rshuffle("experiment-filler", "experiment-item"), SendResults(), "end")
+Sequence("consentimento", "setcounter", "participants", "instructions_1", "instructions_2", "instructions_3", "instructions_4", randomize("exercise"), "start_experiment", rshuffle("experiment-filler", "experiment-item"), SendResults(), "end")
 
 // Ethics agreement: participants must agree before continuing
 newTrial("consentimento",
@@ -62,10 +68,18 @@ newTrial("participants",
     ,
     newText("participant_info_header", "<div class='fancy'><h2>Questionário sociodemográfico</h2><p>Por favor, complete esse questionário com algumas informações sobre você.</p></div>")
     ,
-    // Participant ID
+    // ID
     newText("participantID", "<b>Informe seu nome ou, se preferir, suas iniciais.</b>")
     ,
     newTextInput("input_ID")
+        .log()
+        .print()
+    ,
+    // Idade
+    newText("<b>Qual a sua idade?</b><br>(responda usando números)")
+    ,
+    newTextInput("input_idade")
+        .length(2)
         .log()
         .print()
     ,
@@ -78,6 +92,20 @@ newTrial("participants",
         .labelsPosition("right")
         .print()
     ,
+    // Cidade natal
+    newText("<b>Qual é a sua cidade natal?</b>")
+    ,
+    newTextInput("input_cidadenatal")
+        .log()
+        .print()
+    ,
+        // Cidade de residencia
+    newText("<b>Qual é a sua cidade de residência?</b>")
+    ,
+    newTextInput("input_residencia")
+        .log()
+        .print()
+    ,
     // Nativo
     newText("<b>O português brasileiro é sua língua materna (ou seja, a primeira língua que você aprendeu)?</b>")
     ,
@@ -85,14 +113,6 @@ newTrial("participants",
         .radio()
         .log()
         .labelsPosition("right")
-        .print()
-    ,
-    // Idade
-    newText("<b>Qual a sua idade?</b><br>(responda usando números)")
-    ,
-    newTextInput("input_idade")
-        .length(2)
-        .log()
         .print()
     ,
     // Escolaridade
@@ -104,6 +124,13 @@ newTrial("participants",
         .labelsPosition("right")
         .print()
     ,
+    // Curso
+    newText("<b>Se você marcou 'Curso universitário completo ou cursando', qual é ou foi o seu curso?</b><br>(Se você marcou outra opção, deixe em branco)")
+    ,
+    newTextInput("input_curso")
+        .log()
+        .print()
+    ,
     // Certificado
     newText("<b>Se quiser receber certificado de participação, deixe seu e-mail aqui:</b>")
     ,
@@ -111,7 +138,7 @@ newTrial("participants",
         .log()
         .print()
     ,
-    newText("<b>Obs.: O certificado de participação apenas será enviado caso você tenha deixado seu nome completo.</b>")
+    newText("<b>Obs.: O certificado de participação apenas será enviado caso você tenha informado seu nome completo.</b>")
         .color("red")
     ,
     // Clear error messages if the participant changes the input
@@ -143,22 +170,70 @@ newTrial("participants",
     getVar("NATIVO")   .set( getScale("input_nativo") ),
     getVar("IDADE") .set( getTextInput("input_idade") ),
     getVar("ESCOLARIDADE")    .set( getScale("input_escolaridade") ),
+    getVar("CURSO") .set( getTextInput("input_curso") ),
+    getVar("CIDADE NATAL") .set( getTextInput("input_cidadenatal") ),
+    getVar("RESIDENCIA") .set( getTextInput("input_residencia") ),
     getVar("CERTIFICADO") .set( getTextInput("input_certificado") )
 )
 
 // Instructions
-newTrial("instructions",
-    newText("instructions_greeting", "<h2>INSTRUÇÕES</h2><p>Neste experimento, você verá algumas situações descritas em português, todas envolvendo um objeto que passou por alguma mudança ou ação.</p><p>Logo após cada situação, aparecerá uma pergunta: “O que aconteceu com [o objeto]?”</p><p>Você deverá escolher entre duas frases a que melhor responde a essa pergunta, ou seja, a que mais faz sentido com o que aconteceu com o objeto na situação apresentada.</p><p>Não existe resposta certa ou errada - o que importa é sua intuição sobre o que faz mais sentido com base no que você leu.</p><p>Após ler a situação e selecionar a frase que considera mais adequada, clique em PRÓXIMO para seguir para a próxima frase.</p><p>Ao entender essas instruções, clique em INICIAR para começar.</p>")
-        .left()
+// INSTRUÇÃO 1: introdução e aviso
+newTrial("instructions_1",
+    newText("intro", "<h2>INSTRUÇÕES</h2><p>Olá! Obrigado por participar.</p><p>Antes de começar, certifique-se de que você terá aproximadamente <strong>X minutos</strong> para fazer esta tarefa, e que está em um ambiente <strong>silencioso</strong> e <strong>sem distrações</strong>.<p><strong>Para maior aproveitamento e conforto, recomendamos que você realize o experimento em um computador.</strong></p>")
         .cssContainer({"margin":"1em"})
         .print()
     ,
-  
-    newButton("go_to_exercise", "Iniciar experimento")
-        .cssContainer({"margin":"1em"})
+    newButton("next", "Próximo")
+        .cssContainer({"margin":"2em"})
         .center()
         .print()
         .wait()
+)
+
+// INSTRUÇÃO 2: descrição geral da tarefa
+newTrial("instructions_2",
+    newText("desc", "<p>Nesta tarefa, você verá algumas situações, todas envolvendo um objeto que passou por alguma mudança ou ação.</p><p>Logo após cada situação, aparecerá uma pergunta: <strong>“O que aconteceu com [o objeto]?”</strong></p>")
+        .cssContainer({"margin":"1em"})
+        .print()
+    ,
+    newButton("next", "Próximo")
+        .cssContainer({"margin":"2em"})
+        .center()
+        .print()
+        .wait()
+)
+
+// INSTRUÇÃO 3: o que o participante deve fazer
+newTrial("instructions_3",
+    newText("escolha", "<p>Você deverá escolher entre duas frases a que melhor responde a essa pergunta, ou seja, a que mais faz sentido com o que aconteceu com o objeto na situação apresentada.</p><p><strong>Não existe resposta certa ou errada</strong> – o que importa é sua intuição com base no que leu.</p>")
+        .cssContainer({"margin":"1em"})
+        .print()
+    ,
+    newButton("next", "Próximo")
+        .cssContainer({"margin":"2em"})
+        .center()
+        .print()
+        .wait()
+)
+
+// INSTRUÇÃO 4: sequência da tarefa
+newTrial("instructions_4",
+    newText("sequencia", "<p>Após ler a situação e selecionar a frase que considera mais adequada, você seguirá automaticamente para a próxima frase.</p><p>Ao entender essas instruções, clique no botão abaixo para iniciar a tarefa.</p>")
+        .cssContainer({"margin":"1em"})
+        .print()
+    ,
+    newButton("go_to_exercise", "Iniciar tarefa")
+        .cssContainer({"margin":"2em"})
+        .center()
+        .print()
+        .wait()
+        ,
+        clear()
+        ,
+        // Wait briefly to display which option was selected
+        newTimer("wait", 1000)
+            .start()
+            .wait()
 )
 
 // Exercise
