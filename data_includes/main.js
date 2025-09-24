@@ -34,7 +34,7 @@ Sequence("consentimento", "setcounter", "participants", "instructions_1", "instr
 // Ethics agreement: participants must agree before continuing
 newTrial("consentimento",
     newHtml("ethics_explanation", "consentimento.html")
-        .cssContainer({"margin":"1em"})
+        .cssContainer({"margin":"1em", "font-size":"1.1em"})
         .print()
     ,
     newHtml("form", `<div class='fancy'><input name='consent' id='consent' type='checkbox'><label for='consent'>Li e concordo em participar da pesquisa.</label></div>`)
@@ -180,7 +180,7 @@ newTrial("participants",
 // INSTRUÇÃO 1: introdução e aviso
 newTrial("instructions_1",
     newText("intro", "<h2>INSTRUÇÕES</h2><p>Olá! Obrigado por participar.</p><p>Antes de começar, certifique-se de que você terá aproximadamente <strong>X minutos</strong> para fazer esta tarefa, e que está em um ambiente <strong>silencioso</strong> e <strong>sem distrações</strong>.<p><strong>Para maior aproveitamento e conforto, recomendamos que você realize o experimento em um computador.</strong></p>")
-        .cssContainer({"margin":"1em"})
+        .cssContainer({"margin":"1em", "font-size":"1.3em"})
         .print()
     ,
     newButton("next", "Próximo")
@@ -193,7 +193,7 @@ newTrial("instructions_1",
 // INSTRUÇÃO 2: descrição geral da tarefa
 newTrial("instructions_2",
     newText("desc", "<p>Nesta tarefa, você verá algumas situações, todas envolvendo um objeto que passou por alguma mudança ou ação.</p><p>Logo após cada situação, aparecerá uma pergunta: <strong>“O que aconteceu com [o objeto]?”</strong></p>")
-        .cssContainer({"margin":"1em"})
+        .cssContainer({"margin":"1em", "font-size":"1.3em"})
         .print()
     ,
     newButton("next", "Próximo")
@@ -206,7 +206,7 @@ newTrial("instructions_2",
 // INSTRUÇÃO 3: o que o participante deve fazer
 newTrial("instructions_3",
     newText("escolha", "<p>Você deverá escolher entre duas frases a que melhor responde a essa pergunta, ou seja, a que mais faz sentido com o que aconteceu com o objeto na situação apresentada.</p><p><strong>Não existe resposta certa ou errada</strong> – o que importa é sua intuição com base no que leu.</p>")
-        .cssContainer({"margin":"1em"})
+        .cssContainer({"margin":"1em", "font-size":"1.3em"})
         .print()
     ,
     newButton("next", "Próximo")
@@ -219,7 +219,7 @@ newTrial("instructions_3",
 // INSTRUÇÃO 4: sequência da tarefa
 newTrial("instructions_4",
     newText("sequencia", "<p>Após ler a situação e selecionar a frase que considera mais adequada, você seguirá automaticamente para a próxima frase.</p><p>Ao entender essas instruções, clique no botão abaixo para iniciar a tarefa.</p>")
-        .cssContainer({"margin":"1em"})
+        .cssContainer({"margin":"1em", "font-size":"1.3em"})
         .print()
     ,
     newButton("go_to_exercise", "Iniciar tarefa")
