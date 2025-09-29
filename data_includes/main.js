@@ -14,7 +14,8 @@ Header(
     newVar("CURSO").global(),
     newVar("CERTIFICADO").global(),
     // Experimental trial
-    newVar("presentationOrderCounter").global().set(0)
+    newVar("presentationOrderCounter").global(),
+    newVar("itemOrderCounter").global()
 )
 
 // Add the participant info to all trials' results lines
@@ -29,7 +30,7 @@ Header(
 .log( "CERTIFICADO"   , getVar("CERTIFICADO") )
 
 // Sequence of events: consent to ethics statement required to start the experiment, participant information, instructions, exercise, transition screen, main experiment, result logging, and end screen.
-Sequence("consentimento", "setcounter", "participants", "instructions_1", "instructions_2", "instructions_3", "instructions_4", randomize("exercise"), "start_experiment", rshuffle("experiment-filler", "experiment-item"), SendResults(), "end")
+Sequence("consentimento", "setcounter", "participants", "initcounters", "instructions_1", "instructions_2", "instructions_3", "instructions_4", randomize("exercise"), "start_experiment", rshuffle("experiment-filler", "experiment-item"), SendResults(), "end")
 
 // Ethics agreement: participants must agree before continuing
 newTrial("consentimento",
@@ -99,7 +100,7 @@ newTrial("participants",
         .log()
         .print()
     ,
-        // Cidade de residencia
+    // Cidade de residencia
     newText("<b>Qual é a sua cidade de residência?</b>")
     ,
     newTextInput("input_residencia")
@@ -175,6 +176,12 @@ newTrial("participants",
     getVar("RESIDENCIA") .set( getTextInput("input_residencia") ),
     getVar("CERTIFICADO") .set( getTextInput("input_certificado") )
 )
+
+// Inicialização dos contadores (sem UI)
+newTrial("initcounters",
+    getVar("presentationOrderCounter").set(0),
+    getVar("itemOrderCounter").set(0)
+).setOption("countsForProgressBar", false)
 
 // Instructions
 // INSTRUÇÃO 1: introdução e aviso
@@ -301,7 +308,7 @@ newTrial( "start_experiment" ,
 
 // Experimental trial
 Template("experiment.csv", row =>
-    newTrial( "experiment-"+row.TYPE,
+    newTrial( "experiment-"+((""+row.TYPE).trim().toLowerCase()),
         newText("context", row.CONTEXT)
             .cssContainer({"margin-top":"2em", "margin-bottom":"2em", "font-size":"1.4em"})
             .center()
@@ -335,31 +342,37 @@ Template("experiment.csv", row =>
         newScale("ergativa", row.SENTENCE2).button().cssContainer({"margin":"1em", "font-size":"1.2em"}),
 
         // Define ordem fixa balanceada: (PE, EP, PE, EP)
-        newVar("order")
-            .set( getVar("presentationOrderCounter") )
-            .set(v => {
-                const pattern = ["PE", "EP", "PE", "EP"];
-                return pattern[v % pattern.length];
-            })
+        newVar("TYPE_LOWER").set( (""+row.TYPE).trim().toLowerCase() ),
+        newVar("order").set(""),
+        getVar("TYPE_LOWER").test.is("item")
+            .success(
+                getVar("order")
+                    .set( getVar("itemOrderCounter") )
+                    .set(v => (v % 2 === 0 ? "PE" : "EP")),
+                getVar("itemOrderCounter").set(v => v + 1)
+            )
+            .failure(
+                getVar("order").set( () => (Math.random() < 0.5 ? "PE" : "EP") )
+            )
         ,
-        getVar("presentationOrderCounter").set(v => v + 1),
 
         // DEBUG: ---------------------------------------------------------------
         //Apagar antes de ir pra produção
-        //newVar("debugText")
-            //.global()
-            //.set( getVar("order") )
-            //.set(v => {
-                //const label = (v == "PE") ? "P = SENTENCE1 | E = SENTENCE2" : "P = SENTENCE2 | E = SENTENCE1";
-                //return `Item ${row.ITEM} | Lista ${row.LIST} | ${label}`;
-            //})
-        //,
-         //newText("debugOrder", "")
-            //.text(getVar("debugText"))
-            //.cssContainer({"margin-top": "1em", "margin-bottom": "1em", "color": "darkgreen", "font-size": "1em"})
-           //.center()
-            //.print()
-        //,
+        newVar("debugText")
+            .global()
+            .set( getVar("order") )
+            .set(v => {
+                const label = (v == "PE") ? "P = SENTENCE1 | E = SENTENCE2" : "P = SENTENCE2 | E = SENTENCE1";
+                const typeStr = ((""+row.TYPE).trim().toLowerCase() == "item") ? "INTERCALADO (ITEM)" : "ALEATÓRIO (FILLER)";
+                return `Item ${row.ITEM} | Lista ${row.LIST} | TYPE ${row.TYPE} | ${typeStr} | ${label} | ${v}`;
+            })
+        ,
+         newText("debugOrder", "")
+            .text(getVar("debugText"))
+            .cssContainer({"margin-top": "1em", "margin-bottom": "1em", "color": "darkgreen", "font-size": "1em"})
+           .center()
+            .print()
+        ,
         // DEBUG: ---------------------------------------------------------------
 
         // Cria o canvas dinamicamente com base na ordem sorteada
@@ -417,6 +430,8 @@ Template("experiment.csv", row =>
     .log("SENTENCE2" , row.SENTENCE2) 
     .log("LIST"     , row.LIST)
     //.log("ORDER", getVar("order")) //yasmin: ativar aqui pra ver os logs da ordem no resultado (nao testei)
+    //.log("TYPE"     , (""+row.TYPE).trim().toLowerCase())
+    //.log("ORDER_ACTUAL", getVar("order"))
 )
 
 // Final screen: explanation of the goal
