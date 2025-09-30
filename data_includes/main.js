@@ -94,14 +94,14 @@ newTrial("participants",
         .print()
     ,
     // Cidade natal
-    newText("<b>Qual é a sua cidade natal?</b>")
+    newText("<b>Qual é a sua cidade e estado natal?</b>")
     ,
     newTextInput("input_cidadenatal")
         .log()
         .print()
     ,
     // Cidade de residencia
-    newText("<b>Qual é a sua cidade de residência?</b>")
+    newText("<b>Qual é a sua cidade e estado de residência?</b>")
     ,
     newTextInput("input_residencia")
         .log()
@@ -186,7 +186,7 @@ newTrial("initcounters",
 // Instructions
 // INSTRUÇÃO 1: introdução e aviso
 newTrial("instructions_1",
-    newText("intro", "<h2>INSTRUÇÕES</h2><p>Olá! Obrigado por participar.</p><p>Antes de começar, certifique-se de que você terá aproximadamente <strong>X minutos</strong> para fazer esta tarefa, e que está em um ambiente <strong>silencioso</strong> e <strong>sem distrações</strong>.<p><strong>Para maior aproveitamento e conforto, recomendamos que você realize o experimento em um computador.</strong></p>")
+    newText("intro", "<h2>INSTRUÇÕES</h2><p>Olá! Obrigado por participar.</p><p>Antes de começar, certifique-se de que você terá aproximadamente <strong>15 minutos</strong> para fazer esta tarefa, e que está em um ambiente <strong>silencioso</strong> e <strong>sem distrações</strong>.<p><strong>Para maior aproveitamento e conforto, recomendamos que você realize o experimento em um computador.</strong></p>")
         .cssContainer({"margin":"1em", "font-size":"1.3em"})
         .print()
     ,
@@ -290,7 +290,6 @@ Template("exercise.csv", row =>
             .add(getScale("exercise1"), getScale("exercise2"))
             .center()
             .shuffle()
-            .log()
             .wait()
         ,
         clear()
@@ -337,7 +336,7 @@ Template("experiment.csv", row =>
             .print()
         ,
         
-        // Cria os dois botões sem ainda posicionar
+        // Cria os dois botões
         newScale("passiva", row.SENTENCE1).button().cssContainer({"margin":"1em", "font-size":"1.2em"}),
         newScale("ergativa", row.SENTENCE2).button().cssContainer({"margin":"1em", "font-size":"1.2em"}),
 
@@ -358,28 +357,28 @@ Template("experiment.csv", row =>
 
         // DEBUG: ---------------------------------------------------------------
         //Apagar antes de ir pra produção
-        newVar("debugText")
-            .global()
-            .set( getVar("order") )
-            .set(v => {
-                const label = (v == "PE") ? "P = SENTENCE1 | E = SENTENCE2" : "P = SENTENCE2 | E = SENTENCE1";
-                const typeStr = ((""+row.TYPE).trim().toLowerCase() == "item") ? "INTERCALADO (ITEM)" : "ALEATÓRIO (FILLER)";
-                return `Item ${row.ITEM} | Lista ${row.LIST} | TYPE ${row.TYPE} | ${typeStr} | ${label} | ${v}`;
-            })
-        ,
-         newText("debugOrder", "")
-            .text(getVar("debugText"))
-            .cssContainer({"margin-top": "1em", "margin-bottom": "1em", "color": "darkgreen", "font-size": "1em"})
-           .center()
-            .print()
-        ,
+        //newVar("debugText")
+            //.global()
+            //.set( getVar("order") )
+            //.set(v => {
+                //const label = (v == "PE") ? "P = SENTENCE1 | E = SENTENCE2" : "P = SENTENCE2 | E = SENTENCE1";
+                //const typeStr = ((""+row.TYPE).trim().toLowerCase() == "item") ? "INTERCALADO (ITEM)" : "ALEATÓRIO (FILLER)";
+               //return `Item ${row.ITEM} | Lista ${row.LIST} | TYPE ${row.TYPE} | ${typeStr} | ${label} | ${v}`;
+            //})
+        //,
+         //newText("debugOrder", "")
+            //.text(getVar("debugText"))
+            //.cssContainer({"margin-top": "1em", "margin-bottom": "1em", "color": "darkgreen", "font-size": "1em"})
+           //.center()
+            //.print()
+        //,
         // DEBUG: ---------------------------------------------------------------
 
         // Cria o canvas dinamicamente com base na ordem sorteada
-        newCanvas("canvas", 330, 100)
+        newCanvas("canvas", 380, 80)
             .center()
             .cssContainer({
-                "margin-top": "20px",
+                "margin-top": "10px",
                 "font-size": "1.1em",
                 "display": "flex",
                 "flex-direction": "column",
@@ -389,16 +388,16 @@ Template("experiment.csv", row =>
             .after(
                 getVar("order").test.is("PE")
                     .success(
-                        getCanvas("canvas").add(0, 0, getScale("passiva")),
-                        getCanvas("canvas").add(0, 100, getScale("ergativa"))
+                        getCanvas("canvas").add(0, 0, getScale("passiva").center()),
+                        getCanvas("canvas").add(0, 100, getScale("ergativa").center())
                     )
                     .failure(
-                        getCanvas("canvas").add(0, 0, getScale("ergativa")),
-                        getCanvas("canvas").add(0, 100, getScale("passiva"))
+                        getCanvas("canvas").add(0, 0, getScale("ergativa").center()),
+                        getCanvas("canvas").add(0, 100, getScale("passiva").center())
                     )
             )
         ,
-
+        
         // Adiciona os botões ao seletor na mesma ordem visual
         getVar("order").test.is("PE")
             .success(
